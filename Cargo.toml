@@ -5,4 +5,5 @@ authors = ["Chugunov Roman <Zebs-BMK@yandex.ru>"]
 edition = "2018"
 
 [dependencies]
-libfonthelper = "0.1.4"
+libfonthelper = "0.2"
+simple-server = "0.4.0"
