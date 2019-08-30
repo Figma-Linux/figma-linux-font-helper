@@ -5,11 +5,9 @@ extern crate libfonthelper;
 use std::fs;
 use simple_server::{Method, Server, StatusCode};
 use libfonthelper::Fonts;
+use super::config::Config;
 
-pub fn init() {
-    let host = "127.0.0.1";
-    let port = "18412";
-
+pub fn init(config: Config) {
     let server = Server::new(|request, mut response| {
         println!("Request received. {} {}", request.method(), request.uri());
 
@@ -66,5 +64,5 @@ pub fn init() {
         }
     });
 
-    server.listen(host, port);
+    server.listen(&config.host, &config.port);
 }

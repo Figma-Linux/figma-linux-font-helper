@@ -7,3 +7,5 @@ edition = "2018"
 [dependencies]
 libfonthelper = "0.2"
 simple-server = "0.4.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
