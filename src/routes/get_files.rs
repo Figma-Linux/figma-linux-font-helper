@@ -1,5 +1,6 @@
 use simple_server::{Request, ResponseBuilder, ResponseResult, StatusCode};
 use libfonthelper::Fonts;
+use log::warn;
 
 pub fn handler(request: Request<Vec<u8>>, mut response: ResponseBuilder) ->  ResponseResult {
     let dirs = vec![
@@ -9,7 +10,7 @@ pub fn handler(request: Request<Vec<u8>>, mut response: ResponseBuilder) ->  Res
 
     match Fonts::new(&dirs) {
         Err(err) => {
-            eprintln!("{:?}", err);
+            warn!("Cannot get fonts, ERROR: {}", err);
             response.status(StatusCode::INTERNAL_SERVER_ERROR);
             Ok(response.body("Failed get fonts".as_bytes().to_vec())?)
         },
@@ -17,6 +18,7 @@ pub fn handler(request: Request<Vec<u8>>, mut response: ResponseBuilder) ->  Res
             let mut json = "{\"version\": 4,\"fontFiles\":".to_string();
             json.push_str(&fonts.to_json());
             json.push_str("}");
+
             Ok(response
                 .header("Access-Control-Allow-Origin", "https://www.figma.com")
                 .header("Content-Type", "application/json")

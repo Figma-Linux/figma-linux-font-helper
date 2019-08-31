@@ -1,6 +1,7 @@
 use std::{env, fs, path::Path};
 use serde::{Serialize, Deserialize};
 use serde_json;
+use log::warn;
 
 pub struct Config {
     pub host: String,
@@ -39,7 +40,7 @@ impl Config {
 
         if path.exists() {
             match fs::read(&path) {
-                Err(err) => eprintln!("Cannot read the config file, ERROR: {}", err),
+                Err(err) => warn!("Cannot read the config file, ERROR: {}", err),
                 Ok(file) => {
                     config = serde_json::from_str(&String::from_utf8(file).unwrap()).unwrap();
                 },
