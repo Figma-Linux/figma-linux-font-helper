@@ -27,15 +27,11 @@ impl Config {
   }
 
   fn parse_config_file() -> ConfigFile {
-    let home = String::from(&env::var("HOME").unwrap());
-    let path = Path::new(&home).join(".config/figma-linux/FontHelper");
+    let path = Path::new("/etc/fonthelper/config");
 
     let mut config = ConfigFile {
       port: "18412".to_owned(),
-      directories: vec![
-        String::from("/usr/share/fonts"),
-        String::from(format!("{}/.local/share/fonts", &home)),
-      ],
+      directories: vec![String::from("/usr/share/fonts")],
     };
 
     if path.exists() {
@@ -47,10 +43,6 @@ impl Config {
       };
     } else {
       let json = serde_json::to_string(&config).unwrap();
-      fs::create_dir_all(&path.parent().unwrap()).expect(&format!(
-        "Cannot create all path {}",
-        &path.parent().unwrap().to_str().unwrap()
-      ));
       fs::write(&path, json.as_bytes())
         .expect(&format!("Cannot create file {}", &path.to_str().unwrap()));
     }
