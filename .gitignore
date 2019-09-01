@@ -1,2 +1,4 @@
 /target
+res/fonthelper
+fonthelper.tar.xz
 **/*.rs.bk
