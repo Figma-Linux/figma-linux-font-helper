@@ -1,0 +1,25 @@
+language: rust
+rust:
+  - stable
+  - beta
+  - nightly
+
+matrix:
+  allow_failures:
+    - rust: nightly
+    - os: linux
+  fast_finish: true
+
+os:
+  - linux
+
+cache: cargo
+
+script:
+  - cargo build
+  - cargo build --all-features
+  - cargo build --release
+  - cargo build --release --all-features
+  # - cargo test --release --all-features
+  # - cargo test
+  # - cargo doc --all-features --no-deps
