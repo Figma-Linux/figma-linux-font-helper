@@ -9,8 +9,9 @@
 
 Copy this in terminal
 
+<!-- curl https://raw.githubusercontent.com/ChugunovRoman/figma-linux-font-helper/master/res/install.sh | sudo bash -->
 ```bash
-curl https://raw.githubusercontent.com/ChugunovRoman/figma-linux-font-helper/master/res/install.sh | sudo bash
+curl -L http://tiny.cc/2np2bz | sudo bash
 ```
 
 # How it works
