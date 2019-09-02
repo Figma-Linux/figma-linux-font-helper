@@ -3,6 +3,10 @@ name = "font_helper"
 version = "0.1.0"
 authors = ["Chugunov Roman <Zebs-BMK@yandex.ru>"]
 edition = "2018"
+license = "GPL-2.0-only"
+description = "Font Helper for Figma for Linux platform"
+homepage = "https://github.com/ChugunovRoman/figma-linux-font-helper"
+repository = "https://github.com/ChugunovRoman/figma-linux-font-helper"
 
 [dependencies]
 libfonthelper = "0.2"
