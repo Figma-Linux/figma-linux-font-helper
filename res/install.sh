@@ -14,9 +14,19 @@ download() {
 
 install() {
   mkdir -p /opt/FontHelper
-  mkdir -p /etc/fonthelper
+  mkdir -p /etc/figma-linux
 
-  chmod 777 /etc/fonthelper -R
+  chmod 777 /etc/figma-linux -R
+
+  cat > /etc/figma-linux/fonthelper << EOF
+{
+  "port": "18412",
+  "directories": [
+    "/usr/share/fonts",
+    "$HOME/.local/share/fonts"
+  ]
+}
+EOF
 
   cd /opt/FontHelper;
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
@@ -40,14 +50,14 @@ install() {
 }
 
 main() {
-  if [[ $EUID -ne 0 ]]; then
-    echo "Need run under root";
+  if [[ $EUID -eq 0 ]]; then
+    echo "Run script under non-root user";
     echo "Abort";
     exit 1;
   fi
 
   download;
-  install;
+  sudo bash -c "$(declare -f install); install"
 }
 
 main;

@@ -27,7 +27,7 @@ impl Config {
   }
 
   fn parse_config_file() -> ConfigFile {
-    let path = Path::new("/etc/fonthelper/config");
+    let path = Path::new("/etc/figma-linux/fonthelper");
 
     let mut config = ConfigFile {
       port: "18412".to_owned(),
