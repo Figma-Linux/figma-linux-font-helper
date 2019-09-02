@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -e "\n\n"
+
 get_latest_release_link_download() {
   curl --silent "https://api.github.com/repos/ChugunovRoman/figma-linux-font-helper/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/';
 }
@@ -31,6 +33,7 @@ EOF
   cd /opt/FontHelper;
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
   tar xJf /tmp/fonthelper.tar.xz ./updater.sh
+  tar xJf /tmp/fonthelper.tar.xz ./libfreetype.so.6
   chmod +x ./fonthelper ./updater.sh
 
   cd /lib/systemd/system
