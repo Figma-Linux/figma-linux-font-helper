@@ -6,4 +6,4 @@ cp -rf ./target/release/font_helper ./res/fonthelper
 
 cd ./res
 
-tar cJf ../fonthelper.tar.xz ./{fonthelper*,updater.sh}
+tar cJf ../fonthelper.tar.xz ./{fonthelper*,updater.sh,libfreetype*}
