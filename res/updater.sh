@@ -9,7 +9,7 @@ get_latest_release_link_download() {
 }
 
 have_new_version() {
-  local current=`/opt/FontHelper/fonthelper -v`;
+  local current=$(/opt/FontHelper/fonthelper -v);
   local latest=$(get_latest_release);
 
   if [ ! $current == $latest ]; then
