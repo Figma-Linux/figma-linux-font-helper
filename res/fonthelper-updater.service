@@ -1,11 +1,11 @@
 [Unit]
-Description=Font Helper for Figma
-After=systend-user-sessions.service
+Description=Updater for Font Helper
+After=systemd-user-sessions.service
 
 [Service]
 Type=simple
 ExecStart=/opt/FontHelper/updater.sh
-ExecStop=kill -f -s SIGTERM `ps --no-headers -fC updater.sh | awk '{print $2}'`
+ExecStop=/bin/bash -c "`which kill` -f -s SIGTERM `ps --no-headers -fC updater.sh | awk '{print $2}'`"
 Restart=on-failure
 
 [Install]

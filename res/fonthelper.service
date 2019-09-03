@@ -1,11 +1,11 @@
 [Unit]
 Description=Font Helper for Figma
-After=systend-user-sessions.service
+After=systemd-user-sessions.service
 
 [Service]
 Type=simple
 ExecStart=/opt/FontHelper/fonthelper
-ExecStop=killall fonthelper
+ExecStop=/bin/bash -c '`which killall` fonthelper'
 Restart=on-failure
 
 [Install]

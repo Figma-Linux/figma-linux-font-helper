@@ -66,7 +66,7 @@ main() {
     exit 1;
   fi
 
-  sudo bash -c "$(declare -f download); download"
+  download;
   sudo bash -c "$(declare -f install); install"
 }
 
