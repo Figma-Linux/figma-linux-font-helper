@@ -2,8 +2,13 @@
 
 echo -e "\n\n"
 
-get_latest_release_link_download() {
+get_latest_release() {
   curl --silent "https://github.com/ChugunovRoman/figma-linux-font-helper/releases/latest" | sed -E 's/.*v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,4}).*/\1/';
+}
+
+get_latest_release_link_download() {
+  local latest=$(get_latest_release);
+  echo "http://github.com/ChugunovRoman/figma-linux-font-helper/releases/download/v${latest}/fonthelper.tar.xz"
 }
 
 download() {
