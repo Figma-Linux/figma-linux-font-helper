@@ -1,6 +1,6 @@
 [package]
 name = "font_helper"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Chugunov Roman <Zebs-BMK@yandex.ru>"]
 edition = "2018"
 license = "GPL-2.0-only"
