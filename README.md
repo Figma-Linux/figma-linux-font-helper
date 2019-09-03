@@ -4,6 +4,8 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/476feb557cf447e38f9c94b6944366f7)](https://app.codacy.com/app/ChugunovRoman/figma-linux-font-helper?utm_source=github.com&utm_medium=referral&utm_content=ChugunovRoman/figma-linux-font-helper&utm_campaign=Badge_Grade_Dashboard)
 [![Travis CI](https://travis-ci.org/ChugunovRoman/figma-linux-font-helper.svg?branch=master)](https://travis-ci.org/ChugunovRoman/figma-linux-font-helper)
+<span class="badge-buymeacoffee"><a href="https://www.buymeacoffee.com/U5hnMuASy" title="Donate to this project using Buy Me A Coffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg" alt="Buy Me A Coffee donate button" /></a></span>
+<span class="badge-paypal"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DNBUKPV6FBCY&source=url" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
 
 ## Install
 
