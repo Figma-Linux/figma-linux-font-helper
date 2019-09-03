@@ -1,11 +1,12 @@
 #!/bin/bash
 
 get_latest_release() {
-  curl --silent "https://api.github.com/repos/ChugunovRoman/figma-linux-font-helper/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/';
+  curl --silent "https://github.com/ChugunovRoman/figma-linux-font-helper/releases/latest" | sed -E 's/.*v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,4}).*/\1/';
 }
 
 get_latest_release_link_download() {
-  curl --silent "https://api.github.com/repos/ChugunovRoman/figma-linux-font-helper/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/';
+  local latest=$(get_latest_release);
+  echo "http://github.com/ChugunovRoman/figma-linux-font-helper/releases/download/v${latest}/fonthelper.tar.xz"
 }
 
 have_new_version() {

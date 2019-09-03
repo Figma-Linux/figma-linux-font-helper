@@ -3,7 +3,7 @@
 echo -e "\n\n"
 
 get_latest_release_link_download() {
-  curl --silent "https://api.github.com/repos/ChugunovRoman/figma-linux-font-helper/releases/latest" | grep '"browser_download_url":' | sed -E 's/.*"([^"]+)".*/\1/';
+  curl --silent "https://github.com/ChugunovRoman/figma-linux-font-helper/releases/latest" | sed -E 's/.*v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,4}).*/\1/';
 }
 
 download() {
