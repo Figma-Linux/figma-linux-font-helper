@@ -1,8 +1,14 @@
+use super::super::config::Config;
+use super::super::server::Route;
 use log::warn;
-use simple_server::{Request, ResponseBuilder, ResponseResult, StatusCode};
+use simple_server::{Method, Request, ResponseBuilder, ResponseResult, StatusCode};
 use std::fs;
 
-pub fn handler(request: Request<Vec<u8>>, mut response: ResponseBuilder) -> ResponseResult {
+pub fn handler(
+  request: Request<Vec<u8>>,
+  mut response: ResponseBuilder,
+  _: &Config,
+) -> ResponseResult {
   let v: Vec<String> = request
     .uri()
     .to_string()
@@ -30,4 +36,12 @@ pub fn handler(request: Request<Vec<u8>>, mut response: ResponseBuilder) -> Resp
       );
     }
   };
+}
+
+pub fn init() -> Route {
+  Route {
+    method: Method::GET,
+    path: String::from("/figma/font-file"),
+    handler: Box::new(handler),
+  }
 }

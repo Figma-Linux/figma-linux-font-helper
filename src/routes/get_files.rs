@@ -1,14 +1,11 @@
+use super::super::config::Config;
+use super::super::server::Route;
 use libfonthelper::Fonts;
 use log::warn;
-use simple_server::{Request, ResponseBuilder, ResponseResult, StatusCode};
+use simple_server::{Method, Request, ResponseBuilder, ResponseResult, StatusCode};
 
-pub fn handler(request: Request<Vec<u8>>, mut response: ResponseBuilder) -> ResponseResult {
-  let dirs = vec![
-    String::from("/usr/share/fonts"),
-    String::from("/home/ruut/.local/share/fonts"),
-  ];
-
-  match Fonts::new(&dirs) {
+fn handler(_: Request<Vec<u8>>, mut response: ResponseBuilder, config: &Config) -> ResponseResult {
+  match Fonts::new(&config.directories) {
     Err(err) => {
       warn!("Cannot get fonts, ERROR: {}", err);
       response.status(StatusCode::INTERNAL_SERVER_ERROR);
@@ -27,5 +24,13 @@ pub fn handler(request: Request<Vec<u8>>, mut response: ResponseBuilder) -> Resp
           .body(json.as_bytes().to_vec())?,
       )
     }
+  }
+}
+
+pub fn init() -> Route {
+  Route {
+    method: Method::GET,
+    path: String::from("/figma/font-files"),
+    handler: Box::new(handler),
   }
 }
