@@ -51,6 +51,8 @@ install() {
 
   systemctl enable fonthelper.service
   systemctl enable fonthelper-updater.service
+
+  rm -rf ./fonthelper.tar*
 }
 
 main() {

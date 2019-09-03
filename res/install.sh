@@ -55,6 +55,8 @@ EOF
 
   systemctl enable fonthelper.service
   systemctl enable fonthelper-updater.service
+
+  rm -rf ./fonthelper.tar*
 }
 
 main() {
@@ -64,7 +66,7 @@ main() {
     exit 1;
   fi
 
-  download;
+  sudo download;
   sudo bash -c "$(declare -f install); install"
 }
 
