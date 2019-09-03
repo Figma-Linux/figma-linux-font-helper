@@ -4,7 +4,6 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/476feb557cf447e38f9c94b6944366f7)](https://app.codacy.com/app/ChugunovRoman/figma-linux-font-helper?utm_source=github.com&utm_medium=referral&utm_content=ChugunovRoman/figma-linux-font-helper&utm_campaign=Badge_Grade_Dashboard)
 [![Travis CI](https://travis-ci.org/ChugunovRoman/figma-linux-font-helper.svg?branch=master)](https://travis-ci.org/ChugunovRoman/figma-linux-font-helper)
-<!-- [![codecov](https://codecov.io/gh/ChugunovRoman/figma-linux-font-helper/branch/master/graph/badge.svg)](https://codecov.io/gh/ChugunovRoman/figma-linux-font-helper) -->
 
 ## Install
 
