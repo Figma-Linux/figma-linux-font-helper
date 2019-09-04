@@ -1,6 +1,9 @@
+extern crate percent_encoding;
+
 use super::super::config::Config;
 use super::super::server::Route;
 use log::warn;
+use percent_encoding::percent_decode;
 use simple_server::{Method, Request, ResponseBuilder, ResponseResult, StatusCode};
 use std::fs;
 
@@ -9,13 +12,8 @@ pub fn handler(
   mut response: ResponseBuilder,
   _: &Config,
 ) -> ResponseResult {
-  let v: Vec<String> = request
-    .uri()
-    .to_string()
-    .split("%2F")
-    .map(|s| s.to_string())
-    .collect();
-  let string = v.join("/");
+  let parsed_url: Vec<u8> = percent_decode(request.uri().to_string().as_bytes()).collect();
+  let string = String::from_utf8(parsed_url).expect("BUG: Cannot parse file name from URL");
   let file_path = string[22..string.len()].to_string();
 
   match fs::read(file_path) {
