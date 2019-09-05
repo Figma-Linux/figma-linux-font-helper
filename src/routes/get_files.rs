@@ -8,8 +8,13 @@ fn handler(_: Request<Vec<u8>>, mut response: ResponseBuilder, config: &Config) 
   match Fonts::new(&config.directories) {
     Err(err) => {
       warn!("Cannot get fonts, ERROR: {}", err);
-      response.status(StatusCode::INTERNAL_SERVER_ERROR);
-      Ok(response.body("Failed get fonts".as_bytes().to_vec())?)
+      Ok(
+        response
+          .header("Access-Control-Allow-Origin", "https://www.figma.com")
+          .header("Content-Type", "text/plain")
+          .status(StatusCode::INTERNAL_SERVER_ERROR)
+          .body("Failed get fonts".as_bytes().to_vec())?,
+      )
     }
     Ok(fonts) => {
       let mut json = "{\"version\": 4,\"fontFiles\":".to_string();
