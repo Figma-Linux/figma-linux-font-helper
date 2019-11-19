@@ -1,5 +1,6 @@
-use super::super::config::Config;
-use super::super::server::Route;
+use crate::config::Config;
+use crate::server::Route;
+
 use libfonthelper::Fonts;
 use log::warn;
 use simple_server::{Method, Request, ResponseBuilder, ResponseResult, StatusCode};

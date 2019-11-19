@@ -1,6 +1,7 @@
 use log::warn;
 use serde::{Deserialize, Serialize};
 use serde_json;
+use std::fmt;
 use std::{fs, path::Path};
 
 pub struct Config {
@@ -13,6 +14,25 @@ pub struct Config {
 struct ConfigFile {
   port: String,
   directories: Vec<String>,
+}
+
+impl fmt::Debug for Config {
+  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    let mut print = vec!["Config (".to_owned()];
+
+    print.push(format!("host: {}", self.host));
+    print.push(format!("port: {}", self.port));
+    print.push(format!("directories: ["));
+
+    for dir in &self.directories {
+      print.push(format!("{},", &dir));
+    }
+
+    print.push(format!("]"));
+    print.push(")".to_owned());
+
+    write!(f, "{}", print.join(" "))
+  }
 }
 
 impl Config {
