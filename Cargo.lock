@@ -80,7 +80,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "font_helper"
-version = "0.1.3"
+version = "0.1.4"
 dependencies = [
  "flexi_logger 0.14.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "libfonthelper 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
