@@ -17,7 +17,7 @@ curl -L http://tiny.cc/2np2bz | bash
 ```
 ## How it works
 
-Font Helper is a simple http server witch get requests from figma on localhost, reads fonts and gives it to the Figma.
+Font Helper is a simple http server witch get requests from figma on localhost, reads fonts and gives it to the Figma. When You open a figma project in a browser Figma send local http request in Your system. Font Helper replies on this request and returns list of fonts.
 
 ## How to add directories
 
@@ -25,6 +25,11 @@ You can change Font Helper config file under non-root user.
 The config file is a simple JSON file.
 ```bash
 nano /etc/figma-linux/fonthelper
+```
+
+After that You need to restart Font Helper for apply changes:
+```bash
+sudo systemctl restart fonthelper.service
 ```
 
 ## Where is logs
