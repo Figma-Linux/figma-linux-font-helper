@@ -3,7 +3,7 @@
 echo -e "\n\n"
 
 get_latest_release() {
-  curl --silent "https://github.com/ChugunovRoman/figma-linux-font-helper/releases/latest" | sed -E 's/.*v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,4}).*/\1/';
+  curl -Ls --silent "https://github.com/ChugunovRoman/figma-linux-font-helper/releases/latest" | perl -ne 'print "$1\n" if /v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,4})/' | head -1;
 }
 
 get_latest_release_link_download() {
