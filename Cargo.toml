@@ -9,7 +9,7 @@ homepage = "https://github.com/ChugunovRoman/figma-linux-font-helper"
 repository = "https://github.com/ChugunovRoman/figma-linux-font-helper"
 
 [dependencies]
-libfonthelper = "0.2.2"
+libfonthelper = "0.2.4"
 simple-server = "0.4.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

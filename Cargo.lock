@@ -83,7 +83,7 @@ name = "font_helper"
 version = "0.1.4"
 dependencies = [
  "flexi_logger 0.14.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "libfonthelper 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libfonthelper 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "percent-encoding 2.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.99 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -157,7 +157,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libfonthelper"
-version = "0.2.2"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "finder 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -411,7 +411,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum itoa 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)" = "501266b7edd0174f8530248f87f99c88fbe60ca4ef3dd486835b8d8d53136f7f"
 "checksum lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 "checksum libc 0.2.62 (registry+https://github.com/rust-lang/crates.io-index)" = "34fcd2c08d2f832f376f4173a231990fa5aef4e99fb569867318a227ef4c06ba"
-"checksum libfonthelper 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "821b7bf690470a5e5dc74a5cc8212d6217d35f2c90cc8c3f621a12906b218bac"
+"checksum libfonthelper 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "81847d47fef38bb5be95524920b05aec7c4e3c37efaef77114d8d8a99ae45d9e"
 "checksum libz-sys 1.0.25 (registry+https://github.com/rust-lang/crates.io-index)" = "2eb5e43362e38e2bca2fd5f5134c4d4564a23a5c28e9b95411652021a8675ebe"
 "checksum log 0.3.9 (registry+https://github.com/rust-lang/crates.io-index)" = "e19e8d5c34a3e0e2223db8e060f9e8264aeeb5c5fc64a4ee9965c062211c024b"
 "checksum log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)" = "14b6052be84e6b71ab17edffc2eeabf5c2c3ae1fdb464aae35ac50c67a44e1f7"
