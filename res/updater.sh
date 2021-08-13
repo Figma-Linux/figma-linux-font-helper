@@ -10,7 +10,7 @@ get_latest_release_link_download() {
 }
 
 have_new_version() {
-  local current=$(/opt/FontHelper/fonthelper -v);
+  local current=$($HOME/.local/share/figma-fonthelper/fonthelper -v);
   local latest=$(get_latest_release);
 
   if [ ! $current == $latest ]; then
@@ -32,36 +32,36 @@ download() {
 }
 
 install() {
-  cd /opt/FontHelper;
+  DATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}
+  CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
+  APP_DATA_DIR=$DATA_DIR/figma-fonthelper
+
+  pushd $APP_DATA_DIR
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
   tar xJf /tmp/fonthelper.tar.xz ./updater.sh
   chmod +x ./fonthelper ./updater.sh
+  popd
 
-  cd /lib/systemd/system
-  tar xJf /tmp/fonthelper.tar.xz ./fonthelper.service
-  tar xJf /tmp/fonthelper.tar.xz ./fonthelper-updater.service
+  pushd $CONFIG_DIR/systemd/user
+  tar xJf /tmp/fonthelper.tar.xz ./figma-fonthelper.service
+  tar xJf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service
 
-  chmod 644 /lib/systemd/system/fonthelper.service
-  chmod 644 /lib/systemd/system/fonthelper-updater.service
+  chmod 644 figma-fonthelper.service
+  chmod 644 figma-fonthelper-updater.service
+  popd
 
-  systemctl daemon-reload
+  systemctl --user daemon-reload
 
-  systemctl restart fonthelper.service
-  systemctl restart fonthelper-updater.service
+  systemctl --user restart figma-fonthelper.service
+  systemctl --user restart figma-fonthelper-updater.service
 
-  systemctl enable fonthelper.service
-  systemctl enable fonthelper-updater.service
+  systemctl --user enable figma-fonthelper.service
+  systemctl --user enable figma-fonthelper-updater.service
 
   rm -rf ./fonthelper.tar*
 }
 
 main() {
-  if [[ $EUID -ne 0 ]]; then
-    echo "Need run under root";
-    echo "Abort";
-    exit 1;
-  fi
-
   have_new_version;
 }
 

@@ -24,12 +24,12 @@ Font Helper is a simple http server witch get requests from figma on localhost, 
 You can change Font Helper config file under non-root user.
 The config file is a simple JSON file.
 ```bash
-nano /etc/figma-linux/fonthelper
+nano ~/.config/figma-fonthelper/config.json
 ```
 
 After that You need to restart Font Helper for apply changes:
 ```bash
-sudo systemctl restart fonthelper.service
+systemctl --user restart figma-fonthelper.service
 ```
 
 ## Where is logs
@@ -41,34 +41,34 @@ When Font Helper starts it create a new log file in the directory each time.
 
 Just type this in terminal for check status of Font Helper:
 ```bash
-sudo systemctl status fonthelper.service
+systemctl --user status figma-fonthelper.service
 ```
 
 ## How to update Font Helper
 
 You don't need update it manually.
-Font Helper updates automatically via `fonthelper-updater.service` service.
+Font Helper updates automatically via `figma-fonthelper-updater.service` service.
 <br>If you didn't disable it :)
 
 ## How to disable auto updates
 
 Just disable updater via terminal:
 ```bash
-sudo systemctl stop fonthelper-updater.service
-sudo systemctl disable fonthelper-updater.service
+systemctl --user stop figma-fonthelper-updater.service
+systemctl --user disable ffigma-onthelper-updater.service
 ```
 
 <br>
 
 And for enabling of auto updates:
 ```bash
-sudo systemctl start fonthelper-updater.service
-sudo systemctl enable fonthelper-updater.service
+systemctl --user start figma-fonthelper-updater.service
+systemctl --user enable figma-fonthelper-updater.service
 ```
 
 ## Check of installed version
 
 In terminal:
 ```bash
-/opt/FontHelper/fonthelper -v
+~/local/share/figma-fonthelper/fonthelper -v
 ```
