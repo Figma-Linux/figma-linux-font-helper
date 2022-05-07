@@ -7,6 +7,7 @@ use crate::utils::is_valid_file;
 use log::warn;
 use percent_encoding::percent_decode;
 use simple_server::{Method, Request, ResponseBuilder, ResponseResult, StatusCode};
+use std::collections::HashMap;
 use std::fs;
 
 pub fn handler(
@@ -16,7 +17,21 @@ pub fn handler(
 ) -> ResponseResult {
   let parsed_url: Vec<u8> = percent_decode(request.uri().to_string().as_bytes()).collect();
   let string = String::from_utf8(parsed_url).expect("BUG: Cannot parse file name from URL");
-  let file_path = string[22..string.len()].to_string();
+  let mut url_split = string.splitn(2, "?");
+  let _request_path = url_split.next();
+  let query_str = url_split.next().expect("BUG: not query string was provide");
+  let mut query_params = HashMap::new();
+  for query_param_str in query_str.split("&") {
+    let mut query_param_str_split = query_param_str.splitn(2, "=");
+    let query_param_name = query_param_str_split
+      .next()
+      .expect("BUG: Invalid query param");
+    let query_param_value = query_param_str_split
+      .next()
+      .expect("BUG: Invalid query param");
+    query_params.insert(query_param_name, query_param_value);
+  }
+  let file_path = query_params["file"].to_string();
 
   if !is_valid_file(&config, &file_path) {
     warn!("Incorrect file: {}", &file_path);
