@@ -19,55 +19,57 @@ download() {
   wget "$link";
 }
 
+
 install() {
-  mkdir -p /opt/FontHelper
-  mkdir -p /etc/figma-linux
+  DATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}
+  CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
+  APP_DATA_DIR=$DATA_DIR/figma-fonthelper
+  APP_CONFIG_DIR=$CONFIG_DIR/figma-fonthelper
 
-  chmod 777 /etc/figma-linux -R
+  mkdir -p $APP_DATA_DIR
+  mkdir -p $APP_CONFIG_DIR
 
-  cat > /etc/figma-linux/fonthelper << EOF
+  cat > $APP_CONFIG_DIR/config.json << EOF
 {
   "port": "18412",
   "directories": [
     "/usr/share/fonts",
-    "$HOME/.local/share/fonts"
+    "$DATA_DIR/fonts"
   ]
 }
 EOF
 
-  cd /opt/FontHelper;
+  pushd $APP_DATA_DIR
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
   tar xJf /tmp/fonthelper.tar.xz ./updater.sh
   tar xJf /tmp/fonthelper.tar.xz ./libfreetype.so.6
   chmod +x ./fonthelper ./updater.sh
+  popd
 
-  cd /lib/systemd/system
-  tar xJf /tmp/fonthelper.tar.xz ./fonthelper.service
-  tar xJf /tmp/fonthelper.tar.xz ./fonthelper-updater.service
+  mkdir -p $CONFIG_DIR/systemd/user
+  pushd $CONFIG_DIR/systemd/user
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper.service
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper-updater.service
 
-  chmod 644 /lib/systemd/system/fonthelper.service
-  chmod 644 /lib/systemd/system/fonthelper-updater.service
+  chmod 644 figma-fonthelper.service
+  chmod 644 figma-fonthelper-updater.service
+  popd
 
-  systemctl daemon-reload
+  loginctl enable-linger $(whoami)
+  systemctl --user daemon-reload
 
-  systemctl start fonthelper.service
-  systemctl start fonthelper-updater.service
+  systemctl --user start figma-fonthelper.service
+  systemctl --user start figma-fonthelper-updater.service
 
-  systemctl enable fonthelper.service
-  systemctl enable fonthelper-updater.service
+  systemctl --user enable figma-fonthelper.service
+  systemctl --user enable figma-fonthelper-updater.service
 
   rm -rf ./fonthelper.tar*
 }
 
 main() {
-  if [[ $EUID -eq 0 ]]; then
-    echo "Run script under non-root user";
-    echo "Abort";
-    exit 1;
-  fi
-
-  download;
-  sudo bash -c "$(declare -f install); install"
+  download
+  install
 }
 
 main;
