@@ -24,18 +24,21 @@ install() {
   DATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}
   CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
   APP_DATA_DIR=$DATA_DIR/figma-fonthelper
-  APP_CONFIG_DIR=$CONFIG_DIR/figma-fonthelper
+  APP_CONFIG_DIR=$CONFIG_DIR/figma-linux
 
   mkdir -p $APP_DATA_DIR
   mkdir -p $APP_CONFIG_DIR
 
-  cat > $APP_CONFIG_DIR/config.json << EOF
+  cat > $APP_CONFIG_DIR/settings.json << EOF
 {
+  "host": "127.0.0.1",
   "port": "18412",
-  "directories": [
-    "/usr/share/fonts",
-    "$DATA_DIR/fonts"
-  ]
+  "app": {
+    "fontDirs": [
+      "/usr/share/fonts",
+      "$DATA_DIR/fonts"
+    ]
+  }
 }
 EOF
 

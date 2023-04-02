@@ -5,7 +5,7 @@ pub fn is_valid_file(config: &Config, file_path: &String) -> bool {
     return false;
   }
 
-  for dir in &config.directories {
+  for dir in &config.app.font_dirs {
     if file_path.starts_with(dir) {
       return true;
     }

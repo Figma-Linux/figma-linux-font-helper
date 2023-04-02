@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "cargo",
+      "command": "build"
+    },
+    {
+      "label": "run",
+      "type": "cargo",
+      "command": "run"
+    },
+  ]
+}

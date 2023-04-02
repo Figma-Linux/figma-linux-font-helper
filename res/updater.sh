@@ -34,7 +34,7 @@ download() {
 install() {
   DATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}
   CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
-  APP_DATA_DIR=$DATA_DIR/figma-fonthelper
+  APP_DATA_DIR=$DATA_DIR/figma-linux
 
   pushd $APP_DATA_DIR
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper

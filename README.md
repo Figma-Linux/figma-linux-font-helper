@@ -28,7 +28,7 @@ Font Helper is a simple http server which get requests from figma on localhost, 
 You can change Font Helper config file under non-root user.
 The config file is a simple JSON file.
 ```bash
-nano ~/.config/figma-fonthelper/config.json
+nano ~/.config/figma-linux/settings.json
 ```
 
 After that You need to restart Font Helper for apply changes:
