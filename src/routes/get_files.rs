@@ -38,6 +38,7 @@ fn handler(_: Request<Vec<u8>>, mut response: ResponseBuilder, config: &Config) 
   Ok(
     response
       .header("Access-Control-Allow-Origin", "https://www.figma.com")
+      .header("Access-Control-Allow-Private-Network", "true")
       .header("Content-Type", "application/json")
       .header("Content-Length", json.bytes().len())
       .body(json.as_bytes().to_vec())?,

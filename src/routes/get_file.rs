@@ -57,6 +57,7 @@ pub fn handler(
       return Ok(
         response
           .header("Access-Control-Allow-Origin", "https://www.figma.com")
+          .header("Access-Control-Allow-Private-Network", "true")
           .header("Content-Type", "application/octet-stream")
           .body(file.to_vec())?,
       );

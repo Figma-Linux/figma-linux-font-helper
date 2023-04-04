@@ -5,7 +5,7 @@ extern crate simple_server;
 use super::config::Config;
 use super::routes::*;
 use log::info;
-use simple_server::{Method, Request, ResponseBuilder, ResponseResult};
+use simple_server::{Method, Request, ResponseBuilder, ResponseResult, StatusCode};
 use std::sync::Arc;
 
 pub struct Server {
@@ -30,11 +30,22 @@ impl Server {
     let serv = Arc::new(self);
     let s = serv.clone();
 
-    let server = simple_server::Server::new(move |request, response| {
+    let server = simple_server::Server::new(move |request, mut response| {
       info!("Request received. {} {}", request.method(), request.uri());
 
       let s = serv.as_ref();
       let routes = Arc::new(s.routes.as_ref());
+
+      if request.method() == Method::OPTIONS {
+        return Ok(
+          response
+            .status(StatusCode::NO_CONTENT)
+            .header("Access-Control-Allow-Origin", "https://www.figma.com")
+            .header("Access-Control-Allow-Private-Network", "true")
+            .header("Content-Type", "application/octet-stream")
+            .body("".as_bytes().to_vec())?,
+        );
+      }
 
       for route in *routes {
         if route.method == request.method() && route.path == request.uri().path() {
@@ -45,6 +56,8 @@ impl Server {
 
       any::handler(request, response)
     });
+
+    info!("{:?}", &s.config);
 
     server.listen(&s.config.host, &s.config.port);
   }
