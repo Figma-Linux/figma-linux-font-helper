@@ -70,7 +70,6 @@ jobs:
         uses: ChugunovRoman/action-gh-release@master
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          body_path: ./release_notes
           name: Font Helper ${{ steps.version.outputs.release }}
           files: ./fonthelper.tar.xz
         env:
