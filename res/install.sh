@@ -45,7 +45,6 @@ EOF
   pushd $APP_DATA_DIR
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
   tar xJf /tmp/fonthelper.tar.xz ./updater.sh
-  tar xJf /tmp/fonthelper.tar.xz ./libfreetype.so.6
   chmod +x ./fonthelper ./updater.sh
   popd
 
@@ -58,7 +57,6 @@ EOF
   chmod 644 figma-fonthelper-updater.service
   popd
 
-  loginctl enable-linger $(whoami)
   systemctl --user daemon-reload
 
   systemctl --user start figma-fonthelper.service
