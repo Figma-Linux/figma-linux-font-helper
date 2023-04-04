@@ -10,14 +10,18 @@ run:
 build:
 	cargo build --release
 
+release:
+	git tag -a v$(VER) -m "Release v$(VER)"
+	git push --tags origin master
+
 install:
 	./res/install.sh
 
 uninstall:
 	systemctl --user stop figma-fonthelper.service
-  systemctl --user stop figma-fonthelper-updater.service
+	systemctl --user stop figma-fonthelper-updater.service
 	systemctl --user disable figma-fonthelper.service
-  systemctl --user disable figma-fonthelper-updater.service
+	systemctl --user disable figma-fonthelper-updater.service
 
 	rm -rf $(APP_DATA_DIR)
 
