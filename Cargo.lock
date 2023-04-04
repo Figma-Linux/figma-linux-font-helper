@@ -90,9 +90,9 @@ checksum = "2fad85553e09a6f881f739c29f0b00b0f01357c743266d478b68951ce23285f3"
 
 [[package]]
 name = "font-reader"
-version = "0.1.6"
+version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a34c5f974471723f29a2925712c7517e27096c5e5ab6d251818b5e043350b211"
+checksum = "e29ed4b5fd50be2fdb474321a18ffae81f01e4a28eaf7a55f175cc5e731aebf0"
 dependencies = [
  "binary-reader",
 ]
@@ -164,9 +164,9 @@ checksum = "34fcd2c08d2f832f376f4173a231990fa5aef4e99fb569867318a227ef4c06ba"
 
 [[package]]
 name = "libfonthelper"
-version = "0.3.5"
+version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f6cc4ce32bb3073a491433b85152af660b2ecc780d0ebb4c50a173fda8a8afbc"
+checksum = "7b005a0fa87065df869369f1f3707de79b05b56c1113aea3d4ccd82a9820e335"
 dependencies = [
  "finder",
  "font-reader",
