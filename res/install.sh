@@ -44,26 +44,21 @@ install() {
 EOF
   fi
 
-  cd $APP_DATA_DIR
+  pushd $APP_DATA_DIR
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
   tar xJf /tmp/fonthelper.tar.xz ./updater.sh
   chmod +x ./fonthelper ./updater.sh
-  cd /tmp
+  popd
 
   mkdir -p $CONFIG_DIR/systemd/user
-  cd $CONFIG_DIR/systemd/user
+  pushd $CONFIG_DIR/systemd/user
 
   tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service > figma-fonthelper.service
   tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service > figma-fonthelper-updater.service
 
-  sed -i "s@\${XDG_CONFIG_HOME}@${DATA_DIR}@g" ./figma-fonthelper.service
-  sed -i "s@\${XDG_CONFIG_HOME}@${DATA_DIR}@g" ./figma-fonthelper-updater.service
-  echo "[test_string]" >> ./figma-fonthelper.service
-
   chmod 644 figma-fonthelper.service
   chmod 644 figma-fonthelper-updater.service
-
-  cd /tmp
+  popd
 
   systemctl --user daemon-reload
 
@@ -72,6 +67,9 @@ EOF
 
   systemctl --user enable figma-fonthelper.service
   systemctl --user enable figma-fonthelper-updater.service
+
+  systemctl --user status figma-fonthelper.service
+  systemctl --user status figma-fonthelper-updater.service
 
   rm -rf ./fonthelper.tar*
 }

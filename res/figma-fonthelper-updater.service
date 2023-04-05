@@ -4,7 +4,7 @@ After=systemd-user-sessions.service
 
 [Service]
 Type=simple
-ExecStart=${XDG_CONFIG_HOME}/figma-fonthelper/updater.sh
+ExecStart=/home/$(whoami)/.config/systemd/user/figma-fonthelper/updater.sh
 ExecStop=/bin/bash -c "`which kill` -f -s SIGTERM `ps --no-headers -fC updater.sh | awk '{print $2}'`"
 Restart=on-failure
 
