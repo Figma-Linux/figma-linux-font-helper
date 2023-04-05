@@ -52,8 +52,11 @@ EOF
 
   mkdir -p $CONFIG_DIR/systemd/user
   pushd $CONFIG_DIR/systemd/user
-  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service | sed 's@\${XDG_CONFIG_HOME}@'"${DATA_DIR}"'@' > figma-fonthelper.service
-  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service | sed 's@\${XDG_CONFIG_HOME}@'"${DATA_DIR}"'@' > figma-fonthelper-updater.service
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service > figma-fonthelper.service.tmp
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service > figma-fonthelper-updater.service.tmp
+  cat figma-fonthelper.service.tmp | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper.service
+  cat figma-fonthelper-updater.service.tmp | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper-updater.service
+  rm figma-fonthelper.service.tmp,figma-fonthelper-updater.service.tmp
 
   chmod 644 figma-fonthelper.service
   chmod 644 figma-fonthelper-updater.service
