@@ -44,14 +44,14 @@ install() {
 EOF
   fi
 
-  pushd $APP_DATA_DIR
+  cd $APP_DATA_DIR
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
   tar xJf /tmp/fonthelper.tar.xz ./updater.sh
   chmod +x ./fonthelper ./updater.sh
-  popd
+  cd /tmp
 
   mkdir -p $CONFIG_DIR/systemd/user
-  pushd $CONFIG_DIR/systemd/user
+  cd $CONFIG_DIR/systemd/user
 
   tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service > figma-fonthelper.service
   tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service > figma-fonthelper-updater.service
@@ -62,7 +62,8 @@ EOF
 
   chmod 644 figma-fonthelper.service
   chmod 644 figma-fonthelper-updater.service
-  popd
+
+  cd /tmp
 
   systemctl --user daemon-reload
 
