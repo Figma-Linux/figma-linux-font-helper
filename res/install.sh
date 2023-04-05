@@ -58,6 +58,7 @@ EOF
 
   sed -i "s@\${XDG_CONFIG_HOME}@${DATA_DIR}@g" figma-fonthelper.service
   sed -i "s@\${XDG_CONFIG_HOME}@${DATA_DIR}@g" figma-fonthelper-updater.service
+  echo "[test_string]" >> figma-fonthelper.service
 
   chmod 644 figma-fonthelper.service
   chmod 644 figma-fonthelper-updater.service
