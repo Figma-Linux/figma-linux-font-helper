@@ -53,15 +53,12 @@ EOF
 
   mkdir -p $SYSTEMD_DIR
   pushd $SYSTEMD_DIR
-  bash -c "echo $SYSTEMD_DIR"
-  bash -c "echo $DATA_DIR"
-  bash -c "cd $SYSTEMD_DIR; tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper.service"
-  bash -c "cd $SYSTEMD_DIR; tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper-updater.service"
-  # tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service > figma-fonthelper.service.tmp
-  # tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service > figma-fonthelper-updater.service.tmp
-  # cat figma-fonthelper.service.tmp | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper.service
-  # cat figma-fonthelper-updater.service.tmp | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper-updater.service
-  # rm figma-fonthelper.service.tmp,figma-fonthelper-updater.service.tmp
+
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service > figma-fonthelper.service
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service > figma-fonthelper-updater.service
+
+  sed -i "s@\${XDG_CONFIG_HOME}@${DATA_DIR}@g" figma-fonthelper.service
+  sed -i "s@\${XDG_CONFIG_HOME}@${DATA_DIR}@g" figma-fonthelper-updater.service
 
   chmod 644 figma-fonthelper.service
   chmod 644 figma-fonthelper-updater.service
