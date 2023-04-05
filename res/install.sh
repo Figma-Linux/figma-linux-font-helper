@@ -23,7 +23,6 @@ download() {
 install() {
   DATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}
   CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
-  SYSTEMD_DIR=${XDG_CONFIG_HOME:-$HOME/.config/systemd/user}
   APP_DATA_DIR=$DATA_DIR/figma-fonthelper
   APP_CONFIG_DIR=$CONFIG_DIR/figma-linux
 
@@ -51,8 +50,8 @@ EOF
   chmod +x ./fonthelper ./updater.sh
   popd
 
-  mkdir -p $SYSTEMD_DIR
-  pushd $SYSTEMD_DIR
+  mkdir -p $CONFIG_DIR/systemd/user
+  pushd $CONFIG_DIR/systemd/user
 
   tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service > figma-fonthelper.service
   tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service > figma-fonthelper-updater.service
