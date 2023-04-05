@@ -4,7 +4,7 @@ After=systemd-user-sessions.service
 
 [Service]
 Type=simple
-ExecStart=/home/$(whoami)/.config/systemd/user/figma-fonthelper/fonthelper
+ExecStart=${XDG_CONFIG_HOME}/figma-fonthelper/fonthelper
 ExecStop=/bin/bash -c '`which killall` fonthelper'
 Restart=on-failure
 

@@ -53,8 +53,8 @@ EOF
   mkdir -p $CONFIG_DIR/systemd/user
   pushd $CONFIG_DIR/systemd/user
 
-  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service > figma-fonthelper.service
-  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service > figma-fonthelper-updater.service
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper.service
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper-updater.service
 
   chmod 644 figma-fonthelper.service
   chmod 644 figma-fonthelper-updater.service
@@ -68,8 +68,8 @@ EOF
   systemctl --user enable figma-fonthelper.service
   systemctl --user enable figma-fonthelper-updater.service
 
-  systemctl --user status figma-fonthelper.service
-  systemctl --user status figma-fonthelper-updater.service
+  systemctl --user -q status figma-fonthelper.service
+  systemctl --user -q status figma-fonthelper-updater.service
 
   rm -rf ./fonthelper.tar*
 }
