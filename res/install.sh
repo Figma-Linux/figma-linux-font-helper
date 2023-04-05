@@ -29,6 +29,7 @@ install() {
   mkdir -p $APP_DATA_DIR
   mkdir -p $APP_CONFIG_DIR
 
+  if [ ! -f $APP_CONFIG_DIR/settings.json ]; then
   cat > $APP_CONFIG_DIR/settings.json << EOF
 {
   "host": "127.0.0.1",
@@ -41,6 +42,7 @@ install() {
   }
 }
 EOF
+  fi
 
   pushd $APP_DATA_DIR
   tar xJf /tmp/fonthelper.tar.xz ./fonthelper
