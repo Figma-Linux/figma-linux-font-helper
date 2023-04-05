@@ -24,10 +24,10 @@ install:
 	./res/install.sh
 
 uninstall:
-	systemctl --user stop figma-fonthelper.service
-	systemctl --user stop figma-fonthelper-updater.service
-	systemctl --user disable figma-fonthelper.service
-	systemctl --user disable figma-fonthelper-updater.service
+	systemctl --user stop figma-fonthelper.service || echo ""
+	systemctl --user stop figma-fonthelper-updater.service || echo ""
+	systemctl --user disable figma-fonthelper.service || echo ""
+	systemctl --user disable figma-fonthelper-updater.service || echo ""
 
 	rm -rf $(APP_DATA_DIR)
 
