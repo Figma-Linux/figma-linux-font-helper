@@ -74,5 +74,5 @@ systemctl --user enable figma-fonthelper-updater.service
 
 In terminal:
 ```bash
-~/local/share/figma-fonthelper/fonthelper -v
+~/.local/share/figma-fonthelper/fonthelper -v
 ```
