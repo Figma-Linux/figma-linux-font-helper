@@ -43,8 +43,8 @@ install() {
   popd
 
   pushd $CONFIG_DIR/systemd/user
-  tar xJf /tmp/fonthelper.tar.xz ./figma-fonthelper.service
-  tar xJf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper.service
+  tar xJOf /tmp/fonthelper.tar.xz ./figma-fonthelper-updater.service | XDG_CONFIG_HOME=$DATA_DIR envsubst > figma-fonthelper-updater.service
 
   chmod 644 figma-fonthelper.service
   chmod 644 figma-fonthelper-updater.service
