@@ -230,7 +230,7 @@ dependencies = [
 
 [[package]]
 name = "font_helper"
-version = "0.1.5"
+version = "0.1.7"
 dependencies = [
  "flexi_logger",
  "libfonthelper",

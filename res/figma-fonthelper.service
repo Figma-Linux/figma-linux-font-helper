@@ -4,8 +4,8 @@ After=systemd-user-sessions.service
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c '${HOME}/.local/share/figma-fonthelper/fonthelper'
-ExecStop=/bin/bash -c '`which killall` fonthelper'
+ExecStart=/usr/bin/env bash -c '${XDG_DATA_HOME:-$HOME/.local/share}/figma-fonthelper/fonthelper'
+ExecStop=/usr/bin/env bash -c '`which killall` fonthelper'
 Restart=on-failure
 
 [Install]

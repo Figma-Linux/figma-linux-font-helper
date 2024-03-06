@@ -4,8 +4,8 @@ After=systemd-user-sessions.service
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c '${HOME}/.local/share/figma-fonthelper/updater.sh'
-ExecStop=/bin/bash -c "`which kill` -f -s SIGTERM `ps --no-headers -fC updater.sh | awk '{print $2}'`"
+ExecStart=/usr/bin/env bash -c '${XDG_DATA_HOME:-$HOME/.local/share}/figma-fonthelper/updater.sh'
+ExecStop=/usr/bin/env bash -c "`which kill` -f -s SIGTERM `ps --no-headers -fC updater.sh | awk '{print $2}'`"
 Restart=on-failure
 
 [Install]
