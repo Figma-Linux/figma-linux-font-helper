@@ -33,7 +33,7 @@ install() {
   cat > $APP_CONFIG_DIR/settings.json << EOF
 {
   "host": "127.0.0.1",
-  "port": "18412",
+  "port": "44950",
   "app": {
     "fontDirs": [
       "/usr/share/fonts",
